@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "nodemon mock-api.js watch mock-api.js db.json"
+  },
+  "dependencies": {
+    "json-server": "^0.17.3",
+    "nodemon": "^3.1.4"
+  }
+}
