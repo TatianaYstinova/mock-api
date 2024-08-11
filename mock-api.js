@@ -4,6 +4,27 @@ const server = jsonServer.create();
 const middlewares = jsonServer.defaults();
 const router = jsonServer.router('db.json')
 
+const handlers = {
+    // ['/favorites']: {
+    //     GET: (request, response) => {
+    //         setTimeout(() => response.json(response.locals.data), 20000);
+    //     }
+    // }
+}
+
+router.render=(request,response)=>{ 
+    console.log(request);
+    const {method, path} = request
+
+    const handler = handlers[path]?.[method]
+
+    if(handler){
+        handler(request, response)
+    }else{
+        response.json(response.locals.data)
+    }
+}
+
 const port = 777;
 
 
@@ -20,3 +41,4 @@ server.use([...middlewares]);
 server.listen(port, () => {
     console.log(`mock api is stared on port ${port}`);
 });
+
